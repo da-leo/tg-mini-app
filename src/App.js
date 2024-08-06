@@ -33,9 +33,7 @@ useEffect(() => {
               inivte: inivte
             }),
           });
-          alert(response);
-          const result = await response.json();
-          alert(result)
+          await response.json();
         } catch (error) {
           alert("ERROR!!!!")
           alert(error.message);
