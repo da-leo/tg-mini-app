@@ -9,30 +9,19 @@ const tele = window.Telegram.WebApp;
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const [startParam, setStartParam] = useState("");
-  const [startAppParam, setStartAppParam] = useState("");
+
 
   useEffect(() => {
     tele.ready();
+    tele.onEvent("viewportChanged", function(){
+        alert("43534534543554")
+      }
+    );
+    const params = new URLSearchParams(window.location.search);
+    alert("123", params.get('tgWebAppStartParam'));
+    const urlParams = new URLSearchParams(tele.initData)
+    alert("456", urlParams.get('startapp'));
   });
-
-  useEffect(() => {
-    // const params = new URLSearchParams(window.location.search);
-    // if (params.length > 0) {
-    //   const startParam = params.get('tgWebAppStartParam');
-    //   console.log('Start parameter:', startParam);
-    //   console.log("params: ", params)
-    // }
-    // // setStartParam(params || '')
-
-    // // console.log("init", tele.initData)
-    // const urlParams = new URLSearchParams(tele.initData);
-    // const startAppParam = urlParams.get('startapp');
-    // console.log('Start App Parameter:', startAppParam);
-    // // setStartAppParam(urlParams || '')
-    tele.WebApp.sendData("123454555");
-    tele.sendData("12345");
-  },[]);
 
 
 
