@@ -33,14 +33,12 @@ useEffect(() => {
               inivte: inivte
             }),
           });
-    
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
+          alert(response);
           const result = await response.json();
           alert(result)
         } catch (error) {
           alert("ERROR!!!!")
+          alert(error.message);
         }
       };
       handlePost();
