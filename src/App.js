@@ -12,12 +12,28 @@ function App() {
 
 
   useEffect(() => {
-    tele.ready();
     const params = new URLSearchParams(window.location.search);
+    const inivte = params.get('tgWebAppStartParam');
+    const user_id = tele.initDataUnsafe?.user.id;
+    if (inivte) {
+      //  存在邀请关系
+      tele.sendData(JSON.stringify({
+        user: user_id,
+        inivte: inivte
+      }));
+    } else {
+      // 不存在邀请关系
+      tele.sendData(JSON.stringify({
+        user: user_id,
+        inivte: ""
+      }));
+    }
+
     alert(params.get('tgWebAppStartParam'));
-    alert(tele.initDataUnsafe);
     alert(tele.initDataUnsafe?.user.id);
-  });
+    // const urlParams = new URLSearchParams(tele.initData)
+    // alert(urlParams.get('startapp'));
+    tele.ready();
 
 
 
