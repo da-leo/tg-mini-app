@@ -7,54 +7,61 @@ const foods = getData();
 
 const tele = window.Telegram.WebApp;
 
+function handlePost(user_id, inivte) {
+  const handlePostAsync = async () => {
+    try {
+      const response = await fetch('https://6723-8-210-150-3.ngrok-free.app/v1/appParams', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: user_id,
+          inivte: inivte
+        }),
+      });
+      const data = await response.json();
+      // 可以在这里处理 response.json() 的结果
+    } catch (error) {
+      console.error("Fetch Error:", error.message);
+      alert("ERROR!!!!");
+      alert(error.message);
+    }
+  };
+
+  handlePostAsync();
+}
+
+function initializeApp() {
+  tele.ready();
+}
+
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
-
 useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const inivte = params.get('tgWebAppStartParam');
-    const user_id = tele.initDataUnsafe?.user.id;
-    if (inivte) {
-      //  存在邀请关系
-      // tele.sendData(JSON.stringify({
-      //   user: user_id,
-      //   inivte: inivte
-      // }));
-      const handlePost = async () => {
-        try {
-          const response = await fetch('https://6723-8-210-150-3.ngrok-free.app/v1/appParams', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              user: user_id,
-              inivte: inivte
-            }),
-          });
-          await response.json();
-        } catch (error) {
-          alert("ERROR!!!!")
-          alert(error.message);
-        }
-      };
-      handlePost();
-    } else {
-      // 不存在邀请关系
-      tele.sendData(JSON.stringify({
-        user: user_id,
-        inivte: ""
-      }));
-    }
+  const params = new URLSearchParams(window.location.search);
+  const inivte = params.get('tgWebAppStartParam');
+  const user_id = tele.initDataUnsafe?.user.id;
 
-    alert(params.get('tgWebAppStartParam'));
-    alert(tele.initDataUnsafe?.user.id);
-    // const urlParams = new URLSearchParams(tele.initData)
-    // alert(urlParams.get('startapp'));
-    tele.ready();
-  }, []);
+  if (inivte) {
+    // 存在邀请关系
+    handlePost(user_id, inivte);
+  } else {
+    // 不存在邀请关系
+    tele.sendData(JSON.stringify({
+      user: user_id,
+      inivte: ""
+    }));
+  }
 
+  console.log(params.get('tgWebAppStartParam'));
+  console.log(tele.initDataUnsafe?.user.id);
+
+  // tele.ready(); // 不建议在这里调用，因为它应该在所有初始化完成后调用
+}, []);
+
+  initializeApp();
 
   const onAdd = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
