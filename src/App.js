@@ -17,26 +17,40 @@ function App() {
     const user_id = tele.initDataUnsafe?.user.id;
     if (inivte) {
       //  存在邀请关系
-      alert("HHHHH")
-      tele.sendData(JSON.stringify({
-        user: user_id,
-        inivte: inivte
-      }));
+      // tele.sendData(JSON.stringify({
+      //   user: user_id,
+      //   inivte: inivte
+      // }));
+      const handlePost = async () => {
+        try {
+          const response = await fetch('https://6723-8-210-150-3.ngrok-free.app', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              user: user_id,
+              inivte: inivte
+            }),
+          });
+    
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const result = await response.json();
+          alert(result)
+        } catch (error) {
+          alert("ERROR!!!!")
+        }
+      };
+      handlePost();
     } else {
       // 不存在邀请关系
-      alert("NNNNNN")
       tele.sendData(JSON.stringify({
         user: user_id,
         inivte: ""
       }));
     }
-
-    alert(params.get('tgWebAppStartParam'));
-    alert(tele.initDataUnsafe?.user.id);
-    // const urlParams = new URLSearchParams(tele.initData)
-    // alert(urlParams.get('startapp'));
-    tele.ready();
-  }, []);
 
 
   const onAdd = (food) => {
