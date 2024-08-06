@@ -9,29 +9,32 @@ const tele = window.Telegram.WebApp;
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [startParam, setStartParam] = useState("");
+  const [startAppParam, setStartAppParam] = useState("");
 
-  // useEffect(() => {
-  //   // const params = new URLSearchParams(window.location.search);
-  //   // const startParam = params.get('tgWebAppStartParam');
-  //   // console.log('Start parameter:', startParam);
-  //   // console.log("params: ", params)
-
-  //   // console.log("init", tele.initData)
-  //   // const urlParams = new URLSearchParams(tele.initData);
-  //   // const startAppParam = urlParams.get('startapp');
-  //   // console.log('Start App Parameter:', startAppParam);
-  //   // tele.sendData("12345");
-  //   // tele.ready();
-
-    
-  // });
-
-  const [userData, setUserData] = useState<UserData | null>(null)
   useEffect(() => {
-    if (tele.initDataUnsafe.user) {
-      setUserData(tele.initDataUnsafe.user);
-    }
-  }, []);
+    tele.ready();
+  });
+
+  useEffect(() => {
+    // const params = new URLSearchParams(window.location.search);
+    // if (params.length > 0) {
+    //   const startParam = params.get('tgWebAppStartParam');
+    //   console.log('Start parameter:', startParam);
+    //   console.log("params: ", params)
+    // }
+    // // setStartParam(params || '')
+
+    // // console.log("init", tele.initData)
+    // const urlParams = new URLSearchParams(tele.initData);
+    // const startAppParam = urlParams.get('startapp');
+    // console.log('Start App Parameter:', startAppParam);
+    // // setStartAppParam(urlParams || '')
+    tele.WebApp.sendData("123454555");
+    tele.sendData("12345");
+  },[]);
+
+
 
   const onAdd = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
@@ -65,32 +68,19 @@ function App() {
   };
 
   return (
-      // <h1 className="heading">Order Food</h1>
-      // <Cart cartItems={cartItems} onCheckout={onCheckout}/>
-      // <div className="cards__container">
-      //   {foods.map((food) => {
-      //     return (
-      //       <Card food={food} key={food.id} onAdd={onAdd} onRemove={onRemove} />
-      //     );
-      //   })}
-      // </div>
-    <main className="p-4">
-      {userData ? (
-        <>
-          <h1 className="text-2xl font-bold mb-4">User Data</h1>
-          <ul>
-            <li>ID: {userData.id}</li>
-            <li>First Name: {userData.first_name}</li>
-            <li>Last Name: {userData.last_name || 'N/A'}</li>
-            <li>Username: {userData.username || 'N/A'}</li>
-            <li>Language Code: {userData.language_code}</li>
-            <li>Is Premium: {userData.is_premium ? 'Yes' : 'No'}</li>
-          </ul>
-        </>
-      ) : (
-        <div>Loading...</div>
-      )}
-    </main>
+    <>
+      <h1 className="heading">Order Food</h1>
+      {/* <h1 className="heading">{{startParam}}</h1>
+      <h1 className="heading">{{startAppParam}}</h1> */}
+      <Cart cartItems={cartItems} onCheckout={onCheckout}/>
+      <div className="cards__container">
+        {foods.map((food) => {
+          return (
+            <Card food={food} key={food.id} onAdd={onAdd} onRemove={onRemove} />
+          );
+        })}
+      </div>
+    </>
   );
 }
 
