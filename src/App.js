@@ -34,7 +34,7 @@ function App() {
     // const urlParams = new URLSearchParams(tele.initData)
     // alert(urlParams.get('startapp'));
     tele.ready();
-
+  });
 
 
   const onAdd = (food) => {
