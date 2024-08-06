@@ -5,7 +5,7 @@ import Cart from "./Components/Cart/Cart";
 const { getData } = require("./db/db");
 const foods = getData();
 
-// const tele = window.Telegram.WebApp;
+const tele = window.Telegram.WebApp;
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -28,8 +28,8 @@ function App() {
 
   const [userData, setUserData] = useState<UserData | null>(null)
   useEffect(() => {
-    if (WebApp.initDataUnsafe.user) {
-      setUserData(WebApp.initDataUnsafe.user);
+    if (tele.initDataUnsafe.user) {
+      setUserData(tele.initDataUnsafe.user);
     }
   }, []);
 
