@@ -11,7 +11,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
 
-   useEffect(() => {
+useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
@@ -51,6 +51,13 @@ function App() {
         inivte: ""
       }));
     }
+
+    alert(params.get('tgWebAppStartParam'));
+    alert(tele.initDataUnsafe?.user.id);
+    // const urlParams = new URLSearchParams(tele.initData)
+    // alert(urlParams.get('startapp'));
+    tele.ready();
+  }, []);
 
 
   const onAdd = (food) => {
