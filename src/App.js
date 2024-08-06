@@ -23,7 +23,7 @@ useEffect(() => {
       // }));
       const handlePost = async () => {
         try {
-          const response = await fetch('https://6723-8-210-150-3.ngrok-free.app', {
+          const response = await fetch('https://6723-8-210-150-3.ngrok-free.app/v1/appParams', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
