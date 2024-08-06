@@ -52,7 +52,7 @@ useEffect(() => {
 
     alert(params.get('tgWebAppStartParam'));
     alert(tele.initDataUnsafe?.user.id);
-    tele.ready();
+    // tele.ready();
 }, []);
 
   const onAdd = (food) => {
