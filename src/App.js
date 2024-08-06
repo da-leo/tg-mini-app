@@ -11,6 +11,15 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const startParam = params.get('tgWebAppStartParam');
+    console.log('Start parameter:', startParam);
+    console.log("params: ", params)
+
+    console.log("init", tele.initData)
+    const urlParams = new URLSearchParams(tele.initData);
+    const startAppParam = urlParams.get('startapp');
+    console.log('Start App Parameter:', startAppParam);
     tele.ready();
   });
 
