@@ -13,6 +13,7 @@ function App() {
 
   useEffect(() => {
     tele.ready();
+    const params = new URLSearchParams(window.location.search);
     alert(params.get('tgWebAppStartParam'));
     alert(tele.WebAppUser.id);
   });
