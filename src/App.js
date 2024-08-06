@@ -5,7 +5,7 @@ import Cart from "./Components/Cart/Cart";
 const { getData } = require("./db/db");
 const foods = getData();
 
-const tele = window.Telegram.WebApp;
+// const tele = window.Telegram.WebApp;
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -31,7 +31,7 @@ function App() {
     if (WebApp.initDataUnsafe.user) {
       setUserData(WebApp.initDataUnsafe.user as UserData)
     }
-  }, [])
+  }, []);
 
   const onAdd = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
