@@ -15,7 +15,8 @@ function App() {
     tele.ready();
     const params = new URLSearchParams(window.location.search);
     alert(params.get('tgWebAppStartParam'));
-    alert(tele.WebAppUser.id);
+    alert(tele.initDataUnsafe);
+    alert(tele.initDataUnsafe?.user.id);
   });
 
 
