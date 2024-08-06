@@ -13,14 +13,8 @@ function App() {
 
   useEffect(() => {
     tele.ready();
-    tele.onEvent("viewportChanged", function(){
-        alert("43534534543554")
-      }
-    );
-    const params = new URLSearchParams(window.location.search);
     alert(params.get('tgWebAppStartParam'));
-    const urlParams = new URLSearchParams(tele.initData)
-    alert(urlParams.get('startapp'));
+    alert(tele.WebAppUser.id);
   });
 
 
