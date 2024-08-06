@@ -18,9 +18,9 @@ function App() {
       }
     );
     const params = new URLSearchParams(window.location.search);
-    alert("123", params.get('tgWebAppStartParam'));
+    alert(params.get('tgWebAppStartParam'));
     const urlParams = new URLSearchParams(tele.initData)
-    alert("456", urlParams.get('startapp'));
+    alert(urlParams.get('startapp'));
   });
 
 
