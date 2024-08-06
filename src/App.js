@@ -11,18 +11,20 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
 
-  useEffect(() => {
+   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
     if (inivte) {
       //  存在邀请关系
+      alert("HHHHH")
       tele.sendData(JSON.stringify({
         user: user_id,
         inivte: inivte
       }));
     } else {
       // 不存在邀请关系
+      alert("NNNNNN")
       tele.sendData(JSON.stringify({
         user: user_id,
         inivte: ""
@@ -34,7 +36,7 @@ function App() {
     // const urlParams = new URLSearchParams(tele.initData)
     // alert(urlParams.get('startapp'));
     tele.ready();
-  });
+  }, []);
 
 
   const onAdd = (food) => {
