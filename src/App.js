@@ -12,6 +12,8 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
 useEffect(() => {
+    const data = tele.initData
+    console.log("data: ", data)
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
