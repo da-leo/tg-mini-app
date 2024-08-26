@@ -16,65 +16,88 @@ useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
-    if (inivte) {
-      const handlePost = async () => {
-        try {
-          const response = await fetch('https://shaggy-clouds-remain.loca.lt/v1/appParams', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              user: user_id,
-              inivte: inivte,
-              data: data
-            }),
-          });
+    try {
+              const response = await fetch('https://shaggy-clouds-remain.loca.lt/v1/appParams', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  "tele": tele,
+                  "data": data
+                }),
+              });
+    
+              if (!response.ok) { // 检查状态码是否为 2xx
+                const errorData = await response.json();
+                alert(errorData.message || "An unknown error occurred.");
+              }
+    
+              const jsonData = await response.json();
+              console.log(jsonData);
+            } catch (error) {
+              console.error("Fetch Error:", error.message);
+              alert("GET TELE INFO ERROR!!!!");
+              alert(error.message);
+            }
+  
+    // if (inivte) {
+    //   const handlePost = async () => {
+    //     try {
+    //       const response = await fetch('https://shaggy-clouds-remain.loca.lt/v1/appParams', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //           user: user_id,
+    //           inivte: inivte,
+    //         }),
+    //       });
 
-          if (!response.ok) { // 检查状态码是否为 2xx
-            const errorData = await response.json();
-            alert(errorData.message || "An unknown error occurred.");
-          }
+    //       if (!response.ok) { // 检查状态码是否为 2xx
+    //         const errorData = await response.json();
+    //         alert(errorData.message || "An unknown error occurred.");
+    //       }
 
-          const jsonData = await response.json();
-          console.log(jsonData);
-        } catch (error) {
-          console.error("Fetch Error:", error.message);
-          alert("ERROR!!!!");
-          alert(error.message);
-        }
-      };
-      handlePost();
-    } else {
-      const handlePost = async () => {
-        try {
-          const response = await fetch('https://shaggy-clouds-remain.loca.lt/v1/appParams', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              user: user_id,
-              inivte: "",
-              data: data
-            }),
-          });
+    //       const jsonData = await response.json();
+    //       console.log(jsonData);
+    //     } catch (error) {
+    //       console.error("Fetch Error:", error.message);
+    //       alert("ERROR!!!!");
+    //       alert(error.message);
+    //     }
+    //   };
+    //   handlePost();
+    // } else {
+    //   const handlePost = async () => {
+    //     try {
+    //       const response = await fetch('https://shaggy-clouds-remain.loca.lt/v1/appParams', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //           user: user_id,
+    //           inivte: "",
+    //         }),
+    //       });
 
-          if (!response.ok) { // 检查状态码是否为 2xx
-            const errorData = await response.json();
-            alert(errorData.message || "An unknown error occurred.");
-          }
+    //       if (!response.ok) { // 检查状态码是否为 2xx
+    //         const errorData = await response.json();
+    //         alert(errorData.message || "An unknown error occurred.");
+    //       }
 
-          const jsonData = await response.json();
-          console.log(jsonData);
-        } catch (error) {
-          console.error("Fetch Error:", error.message);
-          alert("ERROR!!!!");
-          alert(error.message);
-        }
-      };
-      handlePost();
-    }
+    //       const jsonData = await response.json();
+    //       console.log(jsonData);
+    //     } catch (error) {
+    //       console.error("Fetch Error:", error.message);
+    //       alert("ERROR!!!!");
+    //       alert(error.message);
+    //     }
+    //   };
+    //   handlePost();
+    // }
 
     alert(params.get('tgWebAppStartParam'));
     alert(tele.initDataUnsafe?.user.id);
