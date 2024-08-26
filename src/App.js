@@ -13,21 +13,21 @@ function App() {
 
 useEffect(() => {
     const data = tele.initData
-    console.log("data: ", data)
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
     if (inivte) {
       const handlePost = async () => {
         try {
-          const response = await fetch('https://6723-8-210-150-3.ngrok-free.app/v1/appParams', {
+          const response = await fetch('https://shaggy-clouds-remain.loca.lt/v1/appParams', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               user: user_id,
-              inivte: inivte
+              inivte: inivte,
+              data: data
             }),
           });
 
@@ -48,14 +48,15 @@ useEffect(() => {
     } else {
       const handlePost = async () => {
         try {
-          const response = await fetch('https://6723-8-210-150-3.ngrok-free.app/v1/appParams', {
+          const response = await fetch('https://shaggy-clouds-remain.loca.lt/v1/appParams', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               user: user_id,
-              inivte: ""
+              inivte: "",
+              data: data
             }),
           });
 
