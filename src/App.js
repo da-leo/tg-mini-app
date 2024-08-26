@@ -17,7 +17,7 @@ useEffect(() => {
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
     try {
-              const response = await fetch('https://shaggy-clouds-remain.loca.lt/v1/appParams', {
+              const response = await fetch('https://real-walls-smash.loca.lt/v1/appParams', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
