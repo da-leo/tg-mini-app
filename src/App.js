@@ -13,11 +13,12 @@ function App() {
 
 useEffect(() => {
     const data = tele.initData
+    alert(data)
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
     try {
-              const response = await fetch('https://real-walls-smash.loca.lt/v1/appParams', {
+              const response = await fetch('https://6723-8-210-150-3.ngrok-free.app/v1/appParams', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
