@@ -17,7 +17,9 @@ useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
-    try {
+    const handlePost = async () => {
+      try {
+      
               const response = await fetch('https://6723-8-210-150-3.ngrok-free.app/v1/appParams', {
                 method: 'POST',
                 headers: {
@@ -41,6 +43,8 @@ useEffect(() => {
               alert("GET TELE INFO ERROR!!!!");
               alert(error.message);
             }
+    }
+    handlePost();
   
     // if (inivte) {
     //   const handlePost = async () => {
@@ -69,7 +73,7 @@ useEffect(() => {
     //       alert(error.message);
     //     }
     //   };
-    //   handlePost();
+      // handlePost();
     // } else {
     //   const handlePost = async () => {
     //     try {
