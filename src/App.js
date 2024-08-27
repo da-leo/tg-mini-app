@@ -17,6 +17,7 @@ useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
+    alert(tele.initDataUnsafe)
     const handlePost = async () => {
       try {
       
@@ -27,7 +28,8 @@ useEffect(() => {
                 },
                 body: JSON.stringify({
                   "tele": tele,
-                  "data": data
+                  "data": data,
+                  "initDataUnsafe": tele.initDataUnsafe
                 }),
               });
     
