@@ -17,7 +17,7 @@ useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const inivte = params.get('tgWebAppStartParam');
     const user_id = tele.initDataUnsafe?.user.id;
-    alert(tele.initDataUnsafe)
+    alert(tele.initDataUnsafe?.user.photo_url)
     const handlePost = async () => {
       try {
       
